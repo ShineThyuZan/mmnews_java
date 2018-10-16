@@ -17,4 +17,18 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <!--<style name="NewAction">-->
+        <!--<item name="background">@color/colorWhite</item>-->
+        <!--<item name="drawablePadding">@dimen/margin_medium_3</item>-->
+        <!--<item name="layout_gravity">center</item>-->
+        <!--<item name="clickable">false</item>-->
+
+    <!--</style>-->
+<style name="WhiteTextBlackShadow">
+    <item name="android:shadowColor">@color/black_full</item>
+    <item name="android:shadowRadius">2</item>
+    <item name="android:shadowDy">2</item>
+    <item name="android:shadowDx">2</item>
+    <item name="android:textColor">@color/white_full</item>
+</style>
 </resources>
