@@ -6,6 +6,7 @@
     android:fitsSystemWindows="true">
 
     <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
@@ -33,10 +34,11 @@
                     android:layout_width="@dimen/publication_logo_high"
                     android:layout_height="@dimen/publication_logo_width"
                     android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_medium"
+                    android:layout_marginBottom="@dimen/margin_medium_3"
                     android:layout_marginLeft="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_medium_2"
-                    android:src="@drawable/publication" />
+                    android:src="@drawable/publication"
+                    />
 
                 <TextView
                     android:id="@+id/tv_publication_title"
@@ -97,4 +99,12 @@
                 android:textSize="@dimen/text_regular" />
         </FrameLayout>
     </android.support.v4.widget.NestedScrollView>
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_favorite_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favorite_border_24dp"
+        app:layout_anchor="@id/appBar"
+        app:layout_anchorGravity="right|bottom"
+        android:layout_marginRight="@dimen/margin_medium_2"/>
 </android.support.design.widget.CoordinatorLayout>

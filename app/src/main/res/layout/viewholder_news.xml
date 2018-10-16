@@ -4,37 +4,11 @@
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/margin_medium">
 
-    <ImageView
-        android:id="@+id/iv_publication"
-        android:layout_width="@dimen/publication_logo_high"
-        android:layout_height="@dimen/publication_logo_width"
-        android:layout_marginLeft="@dimen/margin_small"
-        android:layout_marginTop="@dimen/margin_medium_2"
-        android:src="@drawable/publication"
-
-        />
-
-    <TextView
-        android:id="@+id/tv_publication_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/iv_publication"
-        android:layout_marginLeft="@dimen/margin_medium"
-        android:layout_marginTop="@dimen/margin_small"
-        android:layout_toRightOf="@id/iv_publication"
-        android:text="Eleven News"
-        android:textColor="@color/colorPrimary"
-        android:textSize="16dp" />
-
-    <TextView
-        android:id="@+id/tv_posted_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/tv_publication_title"
-        android:layout_below="@id/tv_publication_title"
-        android:layout_marginTop="@dimen/margin_small"
-        android:text="Posted At:Jan 01   6:30am"
-        android:textColor="@color/colorAccent" />
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:src="@drawable/publication"
+    android:layout_above="@+id/tv_news_brief"/>
 
     <TextView
         android:id="@+id/tv_news_brief"
