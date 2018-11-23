@@ -1,92 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
-
-    <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBar"
+    xmlns:tools="http://schemas.android.com/tools">
+    <android.support.design.widget.CoordinatorLayout
+        android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
-        <android.support.design.widget.CollapsingToolbarLayout
+        <android.support.design.widget.AppBarLayout
+            android:id="@+id/appBar"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/news_details_appbar_height"
-            app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
-            app:contentScrim="@color/colorPrimary">
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true">
 
-            <ImageView
-                android:id="@+id/news_backdrop"
+            <android.support.design.widget.CollapsingToolbarLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@drawable/publication"
-                android:fitsSystemWindows="true"/>
+                android:layout_height="@dimen/news_details_appbar_height"
+                app:layout_scrollFlags="scroll|enterAlways|exitUntilCollapsed"
+                app:contentScrim="@color/colorPrimary">
 
-            <RelativeLayout
+                <ImageView
+                    android:id="@+id/news_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/publication"
+                    android:fitsSystemWindows="true"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_publication"
+                        android:layout_width="@dimen/publication_logo_high"
+                        android:layout_height="@dimen/publication_logo_width"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginBottom="@dimen/margin_medium_3"
+                        android:layout_marginLeft="@dimen/margin_small"
+                        android:layout_marginTop="@dimen/margin_medium_2"
+                        tools:src="@drawable/publication"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_publication_title"
+                        style="@style/WhiteTextBlackShadow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/iv_publication"
+                        android:layout_marginLeft="@dimen/margin_medium"
+                        android:layout_marginTop="@dimen/margin_small"
+                        android:layout_toRightOf="@id/iv_publication"
+                        tools:text="Eleven News"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/tv_posted_date"
+                        style="@style/WhiteTextBlackShadow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignLeft="@id/tv_publication_title"
+                        android:layout_below="@id/tv_publication_title"
+                        android:layout_marginTop="@dimen/margin_medium"
+                        tools:text="Posted At:Jan 01   6:30am" />
+                </RelativeLayout>
+                <android.support.v7.widget.Toolbar
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"/>
+            </android.support.design.widget.CollapsingToolbarLayout>
+        </android.support.design.widget.AppBarLayout>
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
-                    android:id="@+id/iv_publication"
-                    android:layout_width="@dimen/publication_logo_high"
-                    android:layout_height="@dimen/publication_logo_width"
-                    android:layout_alignParentBottom="true"
-                    android:layout_marginBottom="@dimen/margin_medium_3"
-                    android:layout_marginLeft="@dimen/margin_small"
+                <TextView
+                    android:id="@+id/tv_news_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/margin_medium_2"
+                    android:layout_marginRight="@dimen/margin_medium_2"
                     android:layout_marginTop="@dimen/margin_medium_2"
-                    android:src="@drawable/publication"
-                    />
-
-                <TextView
-                    android:id="@+id/tv_publication_title"
-                    style="@style/WhiteTextBlackShadow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignTop="@+id/iv_publication"
-                    android:layout_marginLeft="@dimen/margin_medium"
-                    android:layout_marginTop="@dimen/margin_small"
-                    android:layout_toRightOf="@id/iv_publication"
-                    android:text="Eleven News"
-                    android:textSize="16dp" />
-
-                <TextView
-                    android:id="@+id/tv_posted_date"
-                    style="@style/WhiteTextBlackShadow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignLeft="@id/tv_publication_title"
-                    android:layout_below="@id/tv_publication_title"
-                    android:layout_marginTop="@dimen/margin_medium"
-                    android:text="Posted At:Jan 01   6:30am" />
-            </RelativeLayout>
-            <android.support.v7.widget.Toolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:layout_collapseMode="pin"/>
-        </android.support.design.widget.CollapsingToolbarLayout>
-    </android.support.design.widget.AppBarLayout>
-
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:id="@+id/tv_news_details"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/margin_medium_2"
-                android:layout_marginRight="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_medium_2"
-                android:lineSpacingMultiplier="1.3"
-                android:text="‘‘ဒါဟာ ခက္ခဲတဲ့ပြဲတစ္ပြဲ ျဖစ္ပါလိမ့္မယ္။ ဒါေပမဲ့ အဲဒါဟာ ပါဝင္ယွဥ္ၿပိဳင္ရင္း ရခ်င္တဲ့အ ေတြ႕အႀကံဳေတြပဲ ျဖစ္ပါတယ္’’ ဟု လက္ေရြးစင္အသင္း၌ ဂိုး ေပါက္ရွာမေတြ႕၍ ေဝဖန္ခံေနရ ေသာ ကိန္းကေျပာသည္။
+                    android:lineSpacingMultiplier="1.3"
+                    tools:text="‘‘ဒါဟာ ခက္ခဲတဲ့ပြဲတစ္ပြဲ ျဖစ္ပါလိမ့္မယ္။ ဒါေပမဲ့ အဲဒါဟာ ပါဝင္ယွဥ္ၿပိဳင္ရင္း ရခ်င္တဲ့အ ေတြ႕အႀကံဳေတြပဲ ျဖစ္ပါတယ္’’ ဟု လက္ေရြးစင္အသင္း၌ ဂိုး ေပါက္ရွာမေတြ႕၍ ေဝဖန္ခံေနရ ေသာ ကိန္းကေျပာသည္။
 
 ႏိုင္ငံမ်ားလိဂ္ဖလား အုပ္စု (A) တြင္ စပိန္သည္ ႏွစ္ပြဲကစား ထားၿပီး ေျခာက္မွတ္ျဖင့္ ထိပ္ဆံုး ေနရာရထားကာ အဂၤလန္က တစ္မွတ္သာရထားသျဖင့္ေနာက္ တစ္ဆင့္တက္ေရး စပိန္ႏွင့္ပြဲ၌ ရလဒ္ေကာင္းထြက္ေပၚရန္ လို အပ္ေနသည္။
 
@@ -95,16 +100,24 @@
 အဂၤလန္ႏွင့္ စပိန္ပြဲသည္ လွပေသာပြဲတစ္ပြဲဲ ျဖစ္မည္ျဖစ္ ေသာ္လည္း ခက္ခဲသည္ဟု ရာ မို႔စ္က ခန္႔မွန္းၿပီး အဂၤလန္တိုက္ စစ္မွဴး ဟယ္ရီကိန္းသည္ အႏၲ ရာယ္ေပးႏိုင္ေၾကာင္းေျပာသည္။
 
 ‘‘ဟယ္ရီကိန္းဟာ တားဆီး ဖို႔ အရမ္းခက္ခဲတဲ့ ကစားသမား ပါ။ ဝင္ဘေလကြင္းမွာတုန္းက သူ႔ေၾကာင့္ ကြၽန္ေတာ္တို႔ေနာက္ တန္းေတြ အရမ္းအခက္ႀကံဳခဲ့ပါ တယ္’’ဟု ရာမို႔စ္ကေျပာသည္။"
-                android:textColor="@color/primary_text"
-                android:textSize="@dimen/text_regular" />
-        </FrameLayout>
-    </android.support.v4.widget.NestedScrollView>
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab_favorite_news"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_favorite_border_24dp"
-        app:layout_anchor="@id/appBar"
-        app:layout_anchorGravity="right|bottom"
-        android:layout_marginRight="@dimen/margin_medium_2"/>
-</android.support.design.widget.CoordinatorLayout>
+                    android:textColor="@color/primary_text"
+                    android:textSize="@dimen/text_regular" />
+            </FrameLayout>
+        </android.support.v4.widget.NestedScrollView>
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_favorite_news"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:src="@drawable/ic_favorite_border_24dp"
+            app:layout_anchor="@id/appBar"
+            app:layout_anchorGravity="right|bottom"
+            android:layout_marginRight="@dimen/margin_medium_2"/>
+    </android.support.design.widget.CoordinatorLayout>
+    <include
+        android:id="@+id/vp_empty"
+        layout="@layout/view_pod_empty"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        />
+</FrameLayout>

@@ -7,18 +7,30 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.stz.myapplication.R;
+import com.example.stz.myapplication.data.vos.NewsVos;
 import com.example.stz.myapplication.delegates.NewsDelegates;
+import com.example.stz.myapplication.network.NewsDataAgent;
 import com.example.stz.myapplication.viewholders.NewsViewHolder;
 
-public class NewsAdapters extends RecyclerView.Adapter {
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+public class NewsAdapters extends RecyclerView.Adapter<NewsViewHolder> {
     private NewsDelegates mNewsDelegate;
+    private List<NewsVos> mNewsList;
+
+
+
+
     public NewsAdapters(NewsDelegates newsDelegates){
         mNewsDelegate=newsDelegates;
+        mNewsList = new ArrayList<>();
 
     }
     @NonNull
     @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
+    public NewsViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
        LayoutInflater layoutInflater= LayoutInflater.from(viewGroup.getContext());
        View view=layoutInflater.inflate(R.layout.viewholder_news,viewGroup,false);
 
@@ -26,12 +38,20 @@ public class NewsAdapters extends RecyclerView.Adapter {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int position) {
+    public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
+        holder.setNewsData(mNewsList.get(position));
 
     }
 
+
     @Override
     public int getItemCount() {
-        return 15;
+        return mNewsList.size();
+    }
+
+    public void setNewsList(List<NewsVos> newsList){
+        mNewsList=newsList;
+        notifyDataSetChanged();
+
     }
 }
