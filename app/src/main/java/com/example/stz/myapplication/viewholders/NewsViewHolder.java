@@ -17,7 +17,7 @@ import com.example.stz.myapplication.utils.MMNewsGlideApp;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class NewsViewHolder extends RecyclerView.ViewHolder {
+public class NewsViewHolder extends BaseNewsViewHolder {
     private NewsDelegates mNewsDelegates;
     private NewsVos mNews;
 
@@ -51,8 +51,11 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
         });
     }
 
-    public void setNewsData(NewsVos news) {
-      mNews = news;
+
+    @Override
+    public void bindData(NewsVos news) {
+
+        mNews = news;
         tvNewsBrief.setText(news.getBrief());
 
         if (!news.getImages().isEmpty()) {
@@ -78,4 +81,6 @@ public class NewsViewHolder extends RecyclerView.ViewHolder {
         tvPostedDate.setText(tvPostedDate.getContext()
                 .getResources().getString(R.string.format_posted_date,news.getPostedDate()));
     }
+
+
 }

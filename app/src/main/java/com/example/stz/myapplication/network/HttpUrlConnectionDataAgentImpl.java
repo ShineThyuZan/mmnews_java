@@ -4,7 +4,7 @@ import android.os.AsyncTask;
 
 public class HttpUrlConnectionDataAgentImpl implements NewsDataAgent {
     @Override
-    public void loadNewsList(int page, String accessToken) {
+    public void loadNewsList(int page, String accessToken,boolean isForcedRefresh) {
         new AsyncTask<Void, Void, String>() {
             @Override
             protected String doInBackground(Void... voids) {

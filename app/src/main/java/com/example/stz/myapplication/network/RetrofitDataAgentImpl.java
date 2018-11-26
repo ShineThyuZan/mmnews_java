@@ -1,6 +1,7 @@
 package com.example.stz.myapplication.network;
 
 import com.example.stz.myapplication.events.ApiErrorEvent;
+import com.example.stz.myapplication.events.SuccessForceRefreshGetNewsEvent;
 import com.example.stz.myapplication.events.SuccessGetNewsEvent;
 import com.example.stz.myapplication.network.responses.GetNewsResponse;
 import com.example.stz.myapplication.utils.MMNewsConstants;
@@ -46,16 +47,26 @@ public class RetrofitDataAgentImpl implements NewsDataAgent {
     }
 
     @Override
-    public void loadNewsList(int page, String accessToken) {
+    public void loadNewsList(int page, String accessToken, final boolean isforceRefresh) {
         Call<GetNewsResponse> loadNewsCall=mTheApi.loadNewsList(accessToken,page);
         loadNewsCall.enqueue(new Callback<GetNewsResponse>() {
             @Override
             public void onResponse(Call<GetNewsResponse> call, Response<GetNewsResponse> response) {
                 GetNewsResponse newsResponse = response.body();
 
+
                 if(newsResponse!=null&&newsResponse.isResponseOk()) {
-                    SuccessGetNewsEvent event= new SuccessGetNewsEvent(newsResponse.getMmNews());
-                    EventBus.getDefault().post(event);
+
+                    if(isforceRefresh){
+                        SuccessForceRefreshGetNewsEvent event=new SuccessForceRefreshGetNewsEvent(newsResponse.getMmNews());
+                        EventBus.getDefault().post(event);
+
+                    }
+                    else{
+                        SuccessGetNewsEvent event= new SuccessGetNewsEvent(newsResponse.getMmNews());
+                        EventBus.getDefault().post(event);
+                    }
+
 
 
                 }else

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="@dimen/margin_medium_2"
+    android:layout_marginLeft="@dimen/margin_medium_2"
+    android:layout_marginRight="@dimen/margin_medium_2"
+    card_view:cardElevation="@dimen/margin_medium_2">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <TextView
+            android:id="@+id/tv_publication_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hello Help"
+            android:padding="@dimen/margin_medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="@dimen/text_regular" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/tv_publication_title">
+
+            <org.mmtextview.components.MMTextView
+                android:id="@+id/tv_news_brief"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="ဗိတိန္ ေတာ္ဝင္ မင္းသား ဟယ္ရီနဲ႔ ၾကင္ရာေတာ္ မီဂန္ မာကယ္လ္တို႔ဟာ ပထမဆံုး ရင္ေသြးေလး ရရွိေတာ့မယ္လုိ႔ သိရပါတယ္။ ကန္ဆင္တန္ နန္းေတာ္က အခုလို မဂၤလာရွိတဲ့ သတင္းကို ေအာက္တိုဘာ ၁၅ ရက္မွာ တရားဝင္ ထုတ္ျပန္ အတည္ျပဳခဲ့ပါတယ္။ ဆက္ဆက္စ္ နယ္စားနဲ႔ နယ္စားကေတာ္တို႔ရဲ႕ ပထမဆံုး ရင္ေသြးေလးကို ၂၀၁၉ ခုႏွစ္၊ ေႏြဦးေပါက္ ကာလေလာက္မွာ ေမြးဖြား သန္႔စင္ႏုိင္မယ္လုိ႔ ခန္႔မွန္းထားေၾကာင္း နန္းေတာ္ရဲ႕ ေၾကညာခ်က္မွာ ပါရွိခဲ့ပါတယ္။ အခုလို ေပ်ာ္စရာ သတင္းကို ၿဗိတိန္ ျပည္သူေတြနဲ႔ တစ္ကမာၻလံုးဆီ ပို႔ေဆာင္ အသိေပးခြင့္ ရတဲ့အတြက္ ေတာ္ဝင္ မိသားစုနဲ႔ ဟယ္ရီတို႔ စံုတြဲကလည္း ေပ်ာ္ရႊင္ေနတယ္လုိ႔ ဆိုပါတယ္။ ဟယ္ရီနဲ႔ အေမရိကန္ ႐ုပ္ျမင္သံၾကား"
+                android:maxLines="4"
+                android:ellipsize="end"
+                android:padding="@dimen/margin_medium" />
+
+            <ImageView
+                android:id="@+id/iv_news_hero"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:src="@drawable/placeholder" />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>
+
+

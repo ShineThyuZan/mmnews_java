@@ -20,6 +20,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class NewsDetailsActivity extends BaseActivity {
+
+
+
     @BindView(R.id.tv_news_details)
     TextView tvNewsDetail;
 

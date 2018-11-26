@@ -23,7 +23,7 @@
                 app:contentScrim="@color/colorPrimary">
 
                 <ImageView
-                    android:id="@+id/news_backdrop"
+                    android:id="@+id/iv_news_backdrop"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -83,7 +83,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <TextView
+                <org.mmtextview.components.MMTextView
                     android:id="@+id/tv_news_details"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

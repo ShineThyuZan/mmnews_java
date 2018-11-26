@@ -46,9 +46,9 @@ public class OkHttpDataAgentImpl implements NewsDataAgent {
     }
 
     @Override
-    public void loadNewsList(final int page, final String accessToken) {
+    public void loadNewsList(final int page, final String accessToken,final boolean isFrocedRefresh) {
 
-        NetworkCallTask networkCallTask=new NetworkCallTask(accessToken,page);
+        NetworkCallTask networkCallTask=new NetworkCallTask(accessToken,page,isFrocedRefresh);
         networkCallTask.execute();
 
 
@@ -109,11 +109,13 @@ public class OkHttpDataAgentImpl implements NewsDataAgent {
 
         private String mAccessToken;
         private int mPage;
+        private boolean misForcedRefresh;
         private OkHttpClient mHttpClient;
 
-        public NetworkCallTask(String AccessToken, int Page) {
+        public NetworkCallTask(String AccessToken, int Page,boolean isFrocedRefresh) {
             this.mAccessToken = AccessToken;
             this.mPage = Page;
+            this.misForcedRefresh=isFrocedRefresh;
         }
 
         @Override

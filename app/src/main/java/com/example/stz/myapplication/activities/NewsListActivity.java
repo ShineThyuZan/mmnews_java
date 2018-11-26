@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +20,7 @@ import com.example.stz.myapplication.data.models.NewsModels;
 import com.example.stz.myapplication.data.vos.NewsVos;
 import com.example.stz.myapplication.delegates.NewsDelegates;
 import com.example.stz.myapplication.events.ApiErrorEvent;
+import com.example.stz.myapplication.events.SuccessForceRefreshGetNewsEvent;
 import com.example.stz.myapplication.events.SuccessGetNewsEvent;
 import com.example.stz.myapplication.viewpods.EmptyViewPod;
 
@@ -39,7 +41,7 @@ public class NewsListActivity extends BaseActivity implements NewsDelegates {
     Toolbar toolbar;
 
     @BindView(R.id.rv_news)
-    RecyclerView recyclerView;
+    RecyclerView recyclerViewNews;
 
     @BindView(R.id.vp_empty)
     EmptyViewPod vpEmpty;
@@ -58,10 +60,45 @@ public class NewsListActivity extends BaseActivity implements NewsDelegates {
 
 
         mNewsAdapter = new NewsAdapters(this);
+        recyclerViewNews.addOnScrollListener(new RecyclerView.OnScrollListener() {
 
-        recyclerView.setAdapter(mNewsAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
+            private boolean isListEndReached = false;
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                Log.d("", "OnScrollListenerOnScrollStateChange -" + newState);
+                if (newState == RecyclerView.SCROLL_STATE_IDLE &&
+                        ((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstCompletelyVisibleItemPosition()
+                                == recyclerView.getAdapter().getItemCount() && !isListEndReached) {
+                    NewsModels.getObjInstance().loadNewsList();
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                Log.d("NewsListActivity", "OnScrollListenerOnScrollStateChange -dx" + dx + "dy" + dy);
+                int visibleItemCount = recyclerView.getLayoutManager().getChildCount();
+                int totalItemCount = recyclerView.getLayoutManager().getItemCount();
+                int pastVisibleItem = ((LinearLayoutManager) recyclerView.getLayoutManager())
+                        .findFirstVisibleItemPosition();
+
+                if (visibleItemCount + pastVisibleItem < totalItemCount) {
+                    isListEndReached = false;
+                }
+            }
+        });
+
+        recyclerViewNews.setAdapter(mNewsAdapter);
+
+
+        recyclerViewNews.setLayoutManager(new LinearLayoutManager(getApplicationContext(),
                 LinearLayoutManager.VERTICAL, false));
+
+
+           /*  recyclerViewNews.setLayoutManager(new GridLayoutManager(getApplicationContext(),
+                    2));        */
 
         MMFontUtils.initMMTextView(this);
 
@@ -126,14 +163,31 @@ public class NewsListActivity extends BaseActivity implements NewsDelegates {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onSuccessGetNews(SuccessGetNewsEvent event) {
         Log.d("onSuccessGetNews", "OnSuccessGetNews :" + event.getNewsList().size());
-        mNewsAdapter.setNewsList(event.getNewsList());
+        mNewsAdapter.appendNewsList(event.getNewsList());
         swipeRefreshLayout.setRefreshing(false);
+        vpEmpty.setVisibility(View.GONE);
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onFailGetNews(ApiErrorEvent event) {
         swipeRefreshLayout.setRefreshing(false);
         Snackbar.make(swipeRefreshLayout, event.getErrorMsg(), Snackbar.LENGTH_INDEFINITE).show();
-        vpEmpty.setVisibility(View.VISIBLE);
+
+        if(mNewsAdapter.getItemCount()<=0){
+            vpEmpty.setVisibility(View.VISIBLE);
+        }
+
+
+
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onSuccessForceRefreshGetNews(SuccessForceRefreshGetNewsEvent event) {
+
+        mNewsAdapter.setNewsList(event.getNewsList());
+        swipeRefreshLayout.setRefreshing(false);
+        vpEmpty.setVisibility(View.GONE);
+    }
+
+
 }
